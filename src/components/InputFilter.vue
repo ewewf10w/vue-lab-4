@@ -9,8 +9,10 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue", "filter"]);
 
+// локальное состояние input
 const filterValue = ref(props.modelValue || "");
 
+// синхронизация с родителем
 watch(
   () => props.modelValue,
   (newVal) => {
@@ -18,6 +20,7 @@ watch(
   }
 );
 
+// при вводе текста
 const onInput = () => {
   emit("update:modelValue", filterValue.value);
   emit("filter", { key: props.column, value: filterValue.value });

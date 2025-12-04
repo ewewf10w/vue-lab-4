@@ -13,7 +13,6 @@ import rows from "./data.json";
 const filteredRows = ref([...rows]);
 const emailFilter = ref("");
 
-// Функция фильтрации
 const onFilter = ({ key, value }) => {
   if (key === "email") {
     filteredRows.value = rows.filter((row) =>
@@ -33,10 +32,22 @@ const header = {
   phone: "Телефон",
   image: "Фото",
 };
+
+const resetFilters = () => {
+  filteredRows.value = [...rows];
+};
 </script>
 
 <template>
-  <div class="p-10 flex justify-center">
+  <div class="p-5 flex justify-center">
+    <button
+      @click="resetFilters"
+      class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
+    >
+      Очистить фильтр(ы)
+    </button>
+  </div>
+  <div class="p-4 flex justify-center">
     <BaseTable :rows="filteredRows" :header="header">
       <template #header-email="{ column }">
         <div class="flex items-center gap-2">
