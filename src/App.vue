@@ -13,6 +13,7 @@ import rows from "./data.json";
 const filteredRows = ref([...rows]);
 const emailFilter = ref("");
 
+// computed
 const onFilter = ({ key, value }) => {
   if (key === "email") {
     filteredRows.value = rows.filter((row) =>
@@ -35,6 +36,7 @@ const header = {
 
 const resetFilters = () => {
   filteredRows.value = [...rows];
+  emailFilter.value = "";
 };
 </script>
 
@@ -44,7 +46,7 @@ const resetFilters = () => {
       @click="resetFilters"
       class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
     >
-      Очистить фильтр(ы)
+      Очистить фильтр
     </button>
   </div>
   <div class="p-4 flex justify-center">
